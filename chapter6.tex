@@ -1,0 +1,69 @@
+\chapter{THẢO LUẬN VÀ KẾT LUẬN}
+
+\section{Thảo luận chung}
+
+Bài báo FinAgent nghiên cứu một hướng tiếp cận kết hợp mô hình ngôn ngữ lớn với dữ liệu tài chính đa phương thức, bộ nhớ, cơ chế suy ngẫm và công cụ hỗ trợ. Thay vì xem giao dịch là nhiệm vụ dự đoán giá đơn lẻ, hệ thống tổ chức thành một quy trình phân tích và ra quyết định tuần tự. Cách tiếp cận này phù hợp với đặc điểm của thị trường tài chính, nơi quyết định thường phải dựa trên nhiều nguồn thông tin và chịu ảnh hưởng của những quyết định trước đó.
+
+Một điểm đáng chú ý là FinAgent không chỉ tập trung vào khả năng xử lý ngôn ngữ. Hệ thống còn khai thác dữ liệu số và hình ảnh, truy xuất thông tin lịch sử theo nhiều mục đích và kết hợp các tín hiệu từ công cụ giao dịch. Điều này cho thấy tiềm năng của việc xây dựng tác tử chuyên biệt cho một lĩnh vực bằng cách kết hợp năng lực tổng quát của LLM với các thành phần có cấu trúc.
+
+\section{Ý nghĩa của kiến trúc đa thành phần}
+
+\subsection{Kết hợp nhiều nguồn thông tin}
+Dữ liệu giá, tin tức và biểu đồ có thể bổ sung cho nhau. Dữ liệu giá cho biết điều gì đã diễn ra trên thị trường; tin tức cung cấp bối cảnh có thể liên quan; biểu đồ giúp quan sát trực quan diễn biến. Việc tổng hợp các nguồn có thể làm phong phú quá trình phân tích, nhưng chất lượng cuối cùng phụ thuộc vào độ tin cậy, tính đúng thời điểm và mức độ liên quan của từng nguồn.
+
+\subsection{Sử dụng lịch sử có chọn lọc}
+Bộ nhớ truy xuất đa dạng giúp hệ thống tham khảo những nội dung lịch sử phù hợp thay vì đưa toàn bộ lịch sử vào một lần xử lý. Cách làm này có ý nghĩa trong môi trường dữ liệu dài và liên tục thay đổi. Tuy nhiên, bộ nhớ chỉ hữu ích khi thông tin được lưu có chất lượng và cơ chế truy xuất lựa chọn đúng ngữ cảnh.
+
+\subsection{Tách biệt phân tích hiện tại và đánh giá quyết định cũ}
+Suy ngẫm cấp thấp và cấp cao giải quyết hai câu hỏi khác nhau: thị trường hiện tại đang thể hiện điều gì, và những quyết định trước đây đem lại kết quả ra sao. Sự phân chia này tạo cấu trúc rõ ràng cho quá trình suy luận. Dù vậy, việc tạo ra lời giải thích hoặc bài học không tự động đảm bảo khả năng cải thiện hiệu suất; cần có thí nghiệm thành phần để xác định tác động thực tế.
+
+\subsection{Kết hợp LLM với công cụ có cấu trúc}
+Các công cụ dựa trên quy tắc có thể tạo tín hiệu dễ kiểm tra và bổ sung cho nhận định ngôn ngữ. Ngược lại, LLM có thể tổng hợp thông tin phong phú hơn nhưng có nguy cơ tạo ra nhận định không chính xác. Kết hợp hai hướng tiếp cận có thể giúp tận dụng ưu điểm của mỗi bên, song việc tích hợp phải có kiểm soát và cần kiểm thử trên từng loại tài sản.
+
+\section{Những giới hạn cần cân nhắc}
+
+\subsection{Giới hạn về dữ liệu và phạm vi đánh giá}
+Bài báo đánh giá sáu tài sản trong một khoảng thời gian xác định. Đây là cơ sở hữu ích để so sánh các phương pháp trong thiết kế nghiên cứu, nhưng không thể đại diện cho mọi thị trường, mọi giai đoạn hoặc mọi điều kiện giao dịch. Các sự kiện bất thường và thay đổi cấu trúc thị trường có thể làm thay đổi hiệu quả của hệ thống.
+
+\subsection{Giới hạn của mô hình ngôn ngữ}
+LLM có thể hiểu sai dữ liệu, bỏ qua thông tin quan trọng hoặc tạo lời giải thích thiếu căn cứ. Mô hình cũng có thể nhạy cảm với cách diễn đạt lời nhắc và phiên bản mô hình. Do đó, hệ thống cần định dạng đầu ra rõ ràng, xác thực các giá trị được sinh ra và ghi lại thông tin đầu vào để có thể kiểm tra.
+
+\subsection{Chi phí và độ phức tạp triển khai}
+Một hệ thống đa phương thức với bộ nhớ và nhiều công cụ có thể tốn tài nguyên hơn một chiến lược chỉ báo đơn giản. Nếu mỗi bước đều yêu cầu gọi mô hình bên ngoài, chi phí và độ trễ có thể tăng. Vì vậy, khi triển khai ở quy mô nhỏ, cần lựa chọn phạm vi phù hợp với thời gian, ngân sách và quyền truy cập dữ liệu của nhóm.
+
+\subsection{Khoảng cách giữa mô phỏng và giao dịch thực tế}
+Kết quả kiểm thử lịch sử không bảo đảm hiệu quả trong tương lai. Mô phỏng có thể chưa phản ánh đầy đủ phí giao dịch, trượt giá, thanh khoản, thuế và giới hạn thực thi. Một hệ thống có kết quả tốt trong môi trường nghiên cứu cũng cần trải qua kiểm tra rủi ro và giám sát trước khi được cân nhắc sử dụng trong thực tế.
+
+\section{Bài học rút ra cho việc triển khai của nhóm}
+
+Từ việc phân tích FinAgent, nhóm có thể rút ra các bài học sau:
+\begin{enumerate}
+    \item \textbf{Bắt đầu từ một đường cơ sở rõ ràng:} cần có phương pháp đơn giản để đối chiếu trước khi xây dựng hệ thống phức tạp.
+    \item \textbf{Chia hệ thống thành mô-đun:} tách xử lý dữ liệu, phân tích, bộ nhớ, quyết định và đánh giá để dễ kiểm thử.
+    \item \textbf{Ghi nhật ký quyết định:} lưu dữ liệu đầu vào, thời điểm, đầu ra và lý do để kiểm tra lỗi.
+    \item \textbf{Đánh giá đồng thời lợi nhuận và rủi ro:} không chỉ lựa chọn phương pháp dựa trên một chỉ số lợi nhuận.
+    \item \textbf{Không sử dụng dữ liệu tương lai:} bảo đảm quy trình đánh giá tôn trọng thứ tự thời gian.
+    \item \textbf{Giới hạn tuyên bố theo bằng chứng:} phân biệt rõ kết quả bài báo, kết quả tái hiện và giả thuyết chưa kiểm chứng.
+\end{enumerate}
+
+\section{Hướng phát triển tiếp theo}
+
+Nếu có đủ thời gian, dữ liệu và tài nguyên, nhóm có thể phát triển theo các hướng:
+\begin{itemize}
+    \item Xây dựng đường cơ sở Buy-and-Hold hoặc chiến lược chỉ báo kỹ thuật trên một tài sản.
+    \item Chuẩn hóa dữ liệu giá và thiết kế quy trình kiểm thử theo thời gian.
+    \item Bổ sung mô-đun LLM để tạo nhận định từ dữ liệu đã có, với đầu ra theo định dạng cố định.
+    \item Lưu nhận định và kết quả vào bộ nhớ để thử nghiệm cơ chế truy xuất đơn giản.
+    \item So sánh từng cấu hình bằng ablation study, lần lượt bật hoặc tắt các thành phần.
+    \item Mở rộng từ một tài sản sang nhiều tài sản khi quy trình đã hoạt động ổn định.
+    \item Bổ sung chi phí giao dịch, trượt giá và phân tích độ nhạy để đánh giá tính thực tế.
+\end{itemize}
+Những hướng này là đề xuất phát triển của nhóm, không phải các phần đã được triển khai hoặc xác nhận trong báo cáo hiện tại.
+
+\section{Kết luận}
+
+Báo cáo đã phân tích bài báo \textit{A Multimodal Foundation Agent for Financial Trading: Tool-Augmented, Diversified, and Generalist} của Zhang và cộng sự, công bố tại ACM SIGKDD năm 2024 \cite{zhang2024finagent}. Công trình giới thiệu FinAgent, một tác tử giao dịch tài chính kết hợp dữ liệu số, văn bản và hình ảnh với bộ nhớ truy xuất đa dạng, suy ngẫm hai cấp, công cụ bổ trợ và mô-đun ra quyết định có giải thích.
+
+Qua việc phân tích bài toán, kiến trúc, dữ liệu, phương pháp đánh giá và kết quả được công bố, báo cáo cho thấy cách tiếp cận đa thành phần có tiềm năng hỗ trợ giao dịch tài chính. Đồng thời, hiệu quả của từng thành phần có thể khác nhau theo loại tài sản; vì vậy, việc kiểm thử, đánh giá rủi ro và kiểm soát dữ liệu là cần thiết. Kết quả của bài báo gốc cung cấp bằng chứng trong phạm vi thực nghiệm của tác giả, nhưng không thể được coi là cam kết hiệu quả cho các thị trường khác.
+
+Do giới hạn về tài nguyên và tiến độ, việc tái hiện đầy đủ hệ thống FinAgent có thể vượt quá phạm vi của bài tập lớn. Bước tiếp theo phù hợp là triển khai một phiên bản thu nhỏ, bắt đầu bằng dữ liệu giá và một đường cơ sở dễ kiểm tra, sau đó bổ sung từng thành phần khi có đủ điều kiện. Mọi kết quả thực nghiệm của nhóm cần được ghi nhận từ quá trình chạy thực tế, tách biệt với số liệu công bố trong bài báo.

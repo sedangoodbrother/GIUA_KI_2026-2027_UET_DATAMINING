@@ -1,0 +1,108 @@
+\chapter{DỮ LIỆU VÀ PHƯƠNG PHÁP NGHIÊN CỨU}
+
+\section{Thiết kế nghiên cứu}
+
+Báo cáo được triển khai theo hướng nghiên cứu và phân tích một công trình khoa học về khai phá dữ liệu tài chính. Phương pháp gồm: đọc và hệ thống hóa bài báo gốc; phân tích bài toán, dữ liệu và kiến trúc; tổng hợp thiết kế thực nghiệm của tác giả; đối chiếu kết quả được công bố; và đề xuất quy trình tái hiện thu nhỏ để nhóm có thể thực hiện khi điều kiện dữ liệu và tài nguyên cho phép.
+
+Cần phân biệt hai phạm vi. Phạm vi thứ nhất là kết quả thực nghiệm do Zhang và cộng sự công bố trong bài báo FinAgent. Phạm vi thứ hai là thực nghiệm tái hiện của nhóm. Tại thời điểm soạn thảo chương này, báo cáo chưa ghi nhận kết quả chạy thực tế của nhóm; vì vậy, các kết quả ở Chương 5 được quy thuộc rõ ràng cho bài báo gốc, còn quy trình tái hiện được trình bày như kế hoạch thực hiện.
+
+\section{Nguồn dữ liệu trong bài báo gốc}
+
+\subsection{Các tài sản được nghiên cứu}
+Bài báo đánh giá FinAgent trên sáu bộ dữ liệu tài chính thực tế, gồm năm cổ phiếu của thị trường Hoa Kỳ và một tài sản tiền mã hóa:
+\begin{itemize}
+    \item Apple Inc. (AAPL);
+    \item Amazon.com Inc. (AMZN);
+    \item Alphabet Inc. (GOOGL);
+    \item Microsoft Corporation (MSFT);
+    \item Tesla Inc. (TSLA);
+    \item Ethereum (ETHUSD).
+\end{itemize}
+Việc lựa chọn nhiều tài sản giúp tác giả khảo sát hiệu quả của phương pháp trong các môi trường thị trường khác nhau. Tuy nhiên, sáu tài sản này không đại diện cho toàn bộ thị trường tài chính; kết luận về khả năng khái quát cần được hiểu trong giới hạn thiết kế nghiên cứu của bài báo.
+
+\subsection{Khoảng thời gian và dạng dữ liệu}
+Theo bài báo, dữ liệu được thu thập trong khoảng từ ngày 01/06/2022 đến ngày 01/01/2024, với 398 ngày giao dịch theo thống kê của tác giả. Dữ liệu được chia theo thời gian: giai đoạn huấn luyện từ 01/06/2022 đến 01/06/2023 và giai đoạn kiểm thử từ 01/06/2023 đến 01/01/2024 \cite{zhang2024finagent}.
+
+Các nhóm dữ liệu gồm:
+\begin{itemize}
+    \item \textbf{Giá tài sản theo ngày:} giá mở cửa, cao nhất, thấp nhất, đóng cửa và đóng cửa đã điều chỉnh.
+    \item \textbf{Dữ liệu hình ảnh:} biểu đồ nến K-line và biểu đồ giao dịch.
+    \item \textbf{Tin tức tài sản:} tin tức cập nhật hằng ngày từ các nguồn được bài báo nêu, như Bloomberg Technology, Seeking Alpha và CNBC.
+    \item \textbf{Hướng dẫn chuyên gia:} thông tin hỗ trợ nhằm bổ sung góc nhìn chuyên môn cho quá trình phân tích.
+\end{itemize}
+Bài báo cũng thống kê số lượng dữ liệu ở từng nhóm cho từng tài sản. Những con số thống kê chi tiết cần được trích trực tiếp từ bảng dữ liệu trong bản PDF gốc khi nhóm cần đưa toàn bộ bảng vào báo cáo; không nên tự suy diễn các ô bị thiếu hoặc khó đọc.
+
+\section{Đường cơ sở so sánh}
+
+Bài báo so sánh FinAgent với các phương pháp thuộc nhiều nhóm khác nhau \cite{zhang2024finagent}.
+
+\subsection{Chiến lược dựa trên quy tắc}
+\begin{itemize}
+    \item \textbf{Buy-and-Hold (B\&H):} mua và nắm giữ tài sản trong thời gian dài.
+    \item \textbf{MACD:} sử dụng chỉ báo Moving Average Convergence Divergence để tạo tín hiệu theo xu hướng.
+    \item \textbf{KDJ\&RSI:} kết hợp KDJ và Relative Strength Index để phân tích trạng thái thị trường.
+    \item \textbf{ZMR:} chiến lược hồi quy về trung bình dựa trên Z-score.
+\end{itemize}
+
+\subsection{Mô hình học máy và học sâu}
+Các phương pháp trong nhóm này gồm LightGBM (LGBM), Long Short-Term Memory (LSTM) và Transformer. Chúng đại diện cho hướng sử dụng dữ liệu lịch sử để học mẫu hoặc dự đoán biến động phục vụ giao dịch.
+
+\subsection{Học tăng cường và mô hình ngôn ngữ}
+Bài báo còn so sánh với các phương pháp học tăng cường như SAC, PPO và DQN, cùng các phương pháp dựa trên mô hình ngôn ngữ hoặc tác tử như FinGPT và FinMem. Việc đưa nhiều nhóm đường cơ sở vào đánh giá giúp kết quả có thêm bối cảnh so sánh, thay vì chỉ đối chiếu với một chiến lược đơn giản.
+
+\section{Chỉ số đánh giá}
+
+Bài báo sử dụng sáu chỉ số tài chính. Trong đó, ARR phản ánh lợi nhuận năm hóa; SR, CR và SoR đánh giá lợi nhuận có điều chỉnh theo các dạng rủi ro; MDD và VOL mô tả rủi ro hoặc độ biến động \cite{zhang2024finagent}.
+
+\subsection{Tỷ suất lợi nhuận năm hóa}
+ARR (Annual Rate of Return) biểu diễn mức tăng trưởng danh mục được quy đổi theo năm. Cách tính cụ thể cần tuân theo định nghĩa và công thức trong bài báo gốc, bao gồm quy ước về số ngày giao dịch trong năm. Khi tái hiện, nhóm phải dùng cùng một cách tính cho FinAgent và tất cả đường cơ sở.
+
+\subsection{Tỷ số Sharpe}
+Sharpe Ratio đo lợi suất trung bình so với độ lệch chuẩn của lợi suất. Chỉ số này giúp đánh giá lợi nhuận có đạt được trong điều kiện biến động tương ứng hay không. Khi tính toán, cần thống nhất cách xử lý lợi suất, lãi suất phi rủi ro và việc năm hóa giữa các phương pháp.
+
+\subsection{Mức sụt giảm tối đa}
+Maximum Drawdown là mức giảm lớn nhất của giá trị danh mục từ một đỉnh tích lũy đến đáy tiếp theo trong giai đoạn quan sát. MDD càng lớn thường cho thấy danh mục đã trải qua một đợt giảm sâu hơn. Đây là chỉ số quan trọng vì lợi nhuận cuối kỳ cao không loại trừ khả năng danh mục từng chịu mức thua lỗ lớn trong quá trình giao dịch.
+
+\subsection{Các chỉ số còn lại}
+Calmar Ratio so sánh lợi suất năm hóa với MDD; Sortino Ratio tập trung vào biến động bất lợi; Volatility đo mức phân tán của lợi suất. Báo cáo cần trình bày đầy đủ sáu chỉ số khi phân tích bảng kết quả của bài báo. Trong phần diễn giải, ARR và SR cao hơn thường được xem là tích cực, trong khi MDD và VOL thấp hơn thường có lợi; CR và SoR cần được hiểu theo định nghĩa của từng chỉ số.
+
+\section{Phương pháp phân tích bài báo}
+
+Nhóm sử dụng các bước sau:
+\begin{enumerate}
+    \item Xác định bài toán nghiên cứu và các hạn chế mà tác giả nêu ra.
+    \item Phân loại dữ liệu đầu vào theo dạng số, văn bản và hình ảnh.
+    \item Tách kiến trúc thành các thành phần chức năng: phân tích thị trường, bộ nhớ, suy ngẫm, quyết định và công cụ bổ trợ.
+    \item Ghi nhận thiết kế đánh giá, tài sản, giai đoạn dữ liệu, đường cơ sở và chỉ số.
+    \item Tổng hợp kết quả công bố và phân tích các thí nghiệm thành phần.
+    \item Xác định giới hạn, rủi ro và những điều cần kiểm tra nếu triển khai lại.
+\end{enumerate}
+Phương pháp này tập trung vào khả năng hiểu, giải thích và đánh giá thiết kế nghiên cứu, không đồng nhất việc đọc và phân tích bài báo với việc tái tạo toàn bộ hệ thống của tác giả.
+
+\section{Định hướng tái hiện ở quy mô nhỏ}
+
+\subsection{Mục tiêu và phạm vi}
+Do việc triển khai đầy đủ FinAgent có thể yêu cầu mô hình đa phương thức, dịch vụ LLM, dữ liệu tin tức, bộ nhớ vector và các công cụ giao dịch, nhóm có thể bắt đầu bằng một phiên bản thu nhỏ. Mục tiêu trước mắt là kiểm tra được luồng dữ liệu và đánh giá được một chiến lược đơn giản; không tuyên bố phiên bản thu nhỏ tương đương với toàn bộ FinAgent gốc.
+
+\subsection{Các bước dự kiến}
+\begin{enumerate}
+    \item Chọn một tài sản và thu thập dữ liệu giá theo ngày trong một khoảng thời gian xác định.
+    \item Kiểm tra dữ liệu thiếu, trùng lặp, định dạng ngày và tính nhất quán của giá.
+    \item Chia dữ liệu theo thứ tự thời gian thành giai đoạn phát triển và giai đoạn kiểm thử.
+    \item Xây dựng một đường cơ sở dễ giải thích, chẳng hạn Buy-and-Hold hoặc một chiến lược chỉ báo đơn giản.
+    \item Nếu có quyền truy cập LLM, tạo mô-đun nhận định từ dữ liệu và yêu cầu đầu ra theo định dạng cố định.
+    \item Lưu lại đầu vào, đầu ra, thời điểm quyết định và hành động để có thể kiểm tra.
+    \item Tính các chỉ số tài chính trên cùng một giai đoạn kiểm thử và so sánh với đường cơ sở.
+\end{enumerate}
+
+\subsection{Kiểm soát rò rỉ dữ liệu và tính công bằng}
+Chỉ sử dụng thông tin có sẵn tại thời điểm quyết định. Không được đưa tin tức được công bố sau thời điểm đó vào đầu vào của hệ thống. Mọi phương pháp cần được đánh giá trên cùng giai đoạn kiểm thử, với quy tắc tính chỉ số nhất quán. Nếu có phí giao dịch hoặc trượt giá, cần nêu rõ giả định; nếu chưa mô hình hóa các yếu tố này, phải ghi đó là giới hạn.
+
+\subsection{Khả năng tái lập}
+Để kết quả có thể kiểm tra, nhóm nên lưu mã nguồn, phiên bản thư viện, nguồn và thời điểm tải dữ liệu, cấu hình mô hình, lời nhắc sử dụng, tham số chiến lược và nhật ký chạy. Nếu sử dụng API có tính phí, cần ghi lại giới hạn truy cập và chi phí. Nếu không thể tái hiện một thành phần của bài báo, cần mô tả rõ phần thay thế thay vì trình bày như đã triển khai đúng bản gốc.
+
+\section{Đạo đức và giới hạn nghiên cứu}
+Báo cáo sử dụng kết quả được công bố trong một công trình khoa học và cần ghi nhận nguồn trích dẫn. Kết quả giao dịch được trình bày để phục vụ phân tích học thuật, không phải cam kết lợi nhuận hoặc lời khuyên đầu tư. Dữ liệu thị trường có thể chịu ảnh hưởng của nguồn cung cấp, cách điều chỉnh giá và sai lệch thời gian. Các yếu tố như phí giao dịch, thuế, thanh khoản và trượt giá có thể làm khác biệt giữa kết quả mô phỏng và giao dịch thực tế.
+
+\section{Kết luận chương}
+Chương này đã hệ thống hóa dữ liệu, đường cơ sở, chỉ số và phương pháp nghiên cứu được sử dụng trong bài báo FinAgent. Đồng thời, chương đề xuất quy trình tái hiện thu nhỏ và các nguyên tắc để tránh rò rỉ dữ liệu, bảo đảm so sánh công bằng và ghi nhận trung thực những phần nhóm thực sự triển khai.

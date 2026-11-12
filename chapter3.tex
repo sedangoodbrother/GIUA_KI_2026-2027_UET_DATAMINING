@@ -1,0 +1,97 @@
+\chapter{PHÂN TÍCH MÔ HÌNH FINAGENT}
+
+\section{Tổng quan về FinAgent}
+
+FinAgent là tác tử nền tảng đa phương thức dành cho giao dịch tài chính được Zhang và cộng sự giới thiệu tại hội nghị ACM SIGKDD năm 2024 \cite{zhang2024finagent}. Mục tiêu của hệ thống là kết hợp nhiều nguồn thông tin thị trường, tận dụng lịch sử và kinh nghiệm trước đó, sử dụng công cụ hỗ trợ, đồng thời đưa ra quyết định có giải thích.
+
+Điểm khác biệt chính của FinAgent không nằm ở một chỉ báo đơn lẻ mà ở cách tổ chức nhiều thành phần thành quy trình. Hệ thống thu thập và phân tích thông tin thị trường, truy xuất thông tin lịch sử có liên quan, thực hiện suy ngẫm, tham khảo tri thức chuyên gia và các công cụ bổ trợ, sau đó đưa ra hành động giao dịch. Kết quả phân tích và quyết định có thể được lưu lại để hỗ trợ những lần xử lý tiếp theo.
+
+\section{Kiến trúc tổng thể}
+
+Theo mô tả của bài báo, kiến trúc FinAgent có thể được phân tích thành các nhóm chức năng chính:
+\begin{enumerate}
+    \item \textbf{Market Intelligence (M):} phân tích thông tin thị trường từ dữ liệu số, văn bản và hình ảnh.
+    \item \textbf{Memory (Mem):} lưu trữ và truy xuất các thông tin thị trường cùng kết quả suy ngẫm trước đó.
+    \item \textbf{Reflection (L và H):} gồm suy ngẫm cấp thấp và suy ngẫm cấp cao.
+    \item \textbf{Decision-making (D):} tổng hợp bằng chứng để đưa ra hành động giao dịch và giải thích.
+    \item \textbf{Augmented Tools (T):} cung cấp tín hiệu từ các chiến lược giao dịch và chỉ báo kỹ thuật bổ trợ.
+\end{enumerate}
+Các thành phần có quan hệ với nhau, không phải những mô hình hoạt động hoàn toàn độc lập. Thông tin thị trường tạo cơ sở cho suy luận; bộ nhớ cung cấp ngữ cảnh lịch sử; suy ngẫm giúp xem xét diễn biến và quyết định trước đó; công cụ bổ trợ tạo thêm tín hiệu; bộ phận ra quyết định tổng hợp những thông tin này.
+
+\section{Mô-đun phân tích thông tin thị trường}
+
+\subsection{Dữ liệu đầu vào}
+FinAgent sử dụng nhiều dạng đầu vào nhằm xây dựng góc nhìn đa chiều về thị trường. Dữ liệu giá theo ngày bao gồm giá mở cửa, cao nhất, thấp nhất, đóng cửa và đóng cửa đã điều chỉnh. Dữ liệu hình ảnh bao gồm biểu đồ nến K-line và biểu đồ giao dịch. Dữ liệu văn bản gồm tin tức về tài sản và hướng dẫn từ chuyên gia.
+
+Việc kết hợp các dạng dữ liệu có thể giúp hệ thống nhận biết cả mẫu biến động giá lẫn bối cảnh sự kiện. Tuy nhiên, mỗi nguồn phải được gắn với đúng tài sản và thời điểm. Nếu đưa thông tin xảy ra sau thời điểm ra quyết định vào quá trình phân tích, kết quả đánh giá có thể bị sai lệch do rò rỉ dữ liệu tương lai.
+
+\subsection{Tạo nhận định thị trường}
+Mô-đun Market Intelligence có nhiệm vụ rút ra những thông tin quan trọng từ dữ liệu được cung cấp và tạo nội dung có cấu trúc phục vụ các bước sau. Thay vì chỉ chuyển nguyên dữ liệu thô sang bộ phận quyết định, hệ thống tóm tắt các xu hướng hoặc tín hiệu đáng chú ý thành thông tin dễ sử dụng.
+
+Một đầu ra hữu ích cần phân biệt giữa dữ kiện quan sát được và nhận định suy luận. Ví dụ, mức giá đóng cửa tăng là dữ kiện; nhận định rằng xu hướng tăng sẽ tiếp tục là một giả thuyết. Sự phân biệt này quan trọng vì thông tin thị trường không bảo đảm chắc chắn cho biến động tương lai.
+
+\section{Mô-đun bộ nhớ và truy xuất đa dạng}
+
+\subsection{Lưu trữ thông tin}
+Bài báo mô tả cơ chế lưu trữ vector cho các nội dung liên quan đến thông tin thị trường, suy ngẫm cấp thấp và suy ngẫm cấp cao. Mỗi nội dung được biểu diễn thành văn bản phù hợp cho việc truy xuất. Khi cần xử lý trạng thái mới, tác tử có thể dùng biểu diễn truy vấn để tìm những thông tin lịch sử tương đồng.
+
+\subsection{Truy xuất theo nhiều góc nhìn}
+Một đặc điểm quan trọng của FinAgent là không xem tất cả nội dung lịch sử như một tập đồng nhất. Hệ thống sử dụng các loại truy xuất khác nhau nhằm tìm kiếm thông tin phù hợp với mục đích cụ thể. Theo cách mô tả trong bài báo, các loại truy xuất cho phép lấy những nhóm thông tin lịch sử riêng biệt, sau đó kết hợp các kết quả để cung cấp ngữ cảnh cho tác tử \cite{zhang2024finagent}.
+
+Cách tiếp cận này có hai lợi ích kỳ vọng. Thứ nhất, nó giúp tìm lại những thông tin tương tự nhưng khác về chức năng, chẳng hạn nhận định thị trường và bài học từ quyết định cũ. Thứ hai, nó hạn chế việc đưa quá nhiều nội dung không liên quan vào ngữ cảnh. Dù vậy, chất lượng truy xuất vẫn phụ thuộc vào cách tạo văn bản truy vấn, biểu diễn vector, dữ liệu được lưu và tiêu chí lựa chọn kết quả.
+
+\section{Mô-đun suy ngẫm hai cấp}
+
+\subsection{Suy ngẫm cấp thấp}
+Suy ngẫm cấp thấp (Low-level Reflection -- L) tập trung vào biến động giá và trạng thái thị trường. Thành phần này phân tích các tín hiệu gần với diễn biến hiện tại để tạo ra nhận định phục vụ quyết định giao dịch. Đây là cách hệ thống điều chỉnh phân tích theo tình hình cụ thể thay vì áp dụng một quy tắc cố định cho mọi thời điểm.
+
+\subsection{Suy ngẫm cấp cao}
+Suy ngẫm cấp cao (High-level Reflection -- H) tập trung vào những quyết định giao dịch đã thực hiện và kết quả quan sát được. Từ đó, hệ thống có thể tổng hợp bài học hoặc nhận xét về chất lượng của quyết định trước đó. Những nội dung này được lưu lại để có thể truy xuất khi gặp trạng thái tương tự.
+
+Cần lưu ý rằng “suy ngẫm” trong hệ thống không đồng nghĩa với việc mô hình chắc chắn học được một chiến lược tốt hơn sau mỗi lần giao dịch. Nếu dữ liệu lịch sử thiếu đại diện hoặc phần giải thích sai, nội dung lưu lại cũng có thể gây ảnh hưởng tiêu cực. Do đó, cần đánh giá riêng tác động của từng cấp suy ngẫm.
+
+\section{Mô-đun ra quyết định và công cụ bổ trợ}
+
+\subsection{Tổng hợp bằng chứng}
+Mô-đun ra quyết định (Decision-making -- D) nhận các nhận định thị trường, thông tin lịch sử được truy xuất, nội dung suy ngẫm và các tín hiệu hỗ trợ. Dựa trên các thông tin này, hệ thống lựa chọn hành động như mua, giữ hoặc bán. Bên cạnh hành động, FinAgent nhấn mạnh việc tạo lời giải thích cho quyết định nhằm làm rõ các căn cứ được sử dụng.
+
+Giải thích của mô hình hỗ trợ người đọc kiểm tra tính nhất quán của lập luận, nhưng không nên mặc nhiên xem lời giải thích là bằng chứng rằng mô hình đã sử dụng đúng mọi thông tin hoặc rằng quyết định chắc chắn có lợi nhuận. Việc đánh giá cuối cùng vẫn cần dựa trên dữ liệu và kết quả giao dịch được đo lường độc lập.
+
+\subsection{Vai trò của công cụ bổ trợ}
+Các công cụ bổ trợ (Augmented Tools -- T) cung cấp tín hiệu từ các chiến lược giao dịch có cấu trúc, bao gồm những phương pháp dựa trên chỉ báo kỹ thuật và quy tắc. Các tín hiệu này giúp bổ sung góc nhìn cho LLM, thay vì yêu cầu mô hình tự thực hiện mọi phép phân tích từ đầu.
+
+Tuy nhiên, công cụ bổ trợ có thể được thiết kế dựa trên giả định riêng. Một chiến lược phù hợp với cổ phiếu chưa chắc phù hợp với tài sản tiền mã hóa. Vì vậy, hệ thống cần kiểm tra hiệu quả công cụ theo từng nhóm tài sản và không nên kết hợp mọi công cụ một cách máy móc.
+
+\section{Quy trình hoạt động khái quát}
+
+Có thể mô tả quy trình xử lý của FinAgent theo các bước khái quát sau:
+\begin{enumerate}
+    \item Thu thập dữ liệu thị trường tại thời điểm cần ra quyết định.
+    \item Phân tích dữ liệu số, văn bản và hình ảnh để tạo nhận định thị trường.
+    \item Tạo truy vấn và tìm kiếm thông tin lịch sử phù hợp trong bộ nhớ.
+    \item Thực hiện suy ngẫm cấp thấp để phân tích trạng thái hiện tại.
+    \item Thực hiện suy ngẫm cấp cao dựa trên kinh nghiệm và kết quả giao dịch trước đó khi có dữ liệu phù hợp.
+    \item Gọi hoặc tiếp nhận tín hiệu từ các công cụ bổ trợ.
+    \item Tổng hợp các bằng chứng để chọn hành động giao dịch và tạo giải thích.
+    \item Lưu những nhận định và kết quả cần thiết để hỗ trợ các lần xử lý tiếp theo.
+\end{enumerate}
+Danh sách trên diễn giải luồng chức năng ở mức khái quát, không thay thế sơ đồ triển khai chi tiết của tác giả. Thứ tự thực thi cụ thể và cách truyền dữ liệu giữa các thành phần cần được đối chiếu với sơ đồ kiến trúc trong bài báo gốc.
+
+\section{Phân tích ưu điểm}
+
+Thứ nhất, FinAgent tích hợp dữ liệu đa phương thức thay vì chỉ sử dụng chuỗi giá. Điều này tạo điều kiện xem xét bối cảnh tin tức và thông tin trực quan cùng với các con số thị trường.
+
+Thứ hai, hệ thống có bộ nhớ và truy xuất theo nhiều loại thông tin. Cơ chế này hướng tới việc sử dụng kinh nghiệm lịch sử có chọn lọc, thay vì chỉ dựa trên ngữ cảnh của một lần gọi mô hình.
+
+Thứ ba, suy ngẫm hai cấp tách biệt phân tích diễn biến thị trường với việc xem xét quyết định trước đó. Cách phân chia này giúp làm rõ vai trò của từng thành phần và cho phép nghiên cứu bằng thực nghiệm loại bỏ từng thành phần.
+
+Thứ tư, việc sử dụng công cụ bổ trợ đưa thêm các phương pháp giao dịch có cấu trúc vào quá trình ra quyết định. Đồng thời, hệ thống tạo giải thích cho hành động, hỗ trợ việc kiểm tra và phân tích quyết định.
+
+\section{Hạn chế và rủi ro}
+
+Dù có nhiều ưu điểm, FinAgent vẫn có những hạn chế cần xem xét. Chất lượng đầu ra phụ thuộc vào chất lượng LLM, dữ liệu đầu vào và thiết kế lời nhắc. Việc xử lý hình ảnh, tin tức và lịch sử có thể làm tăng chi phí tính toán, độ trễ và yêu cầu lưu trữ. Cơ chế bộ nhớ cũng có thể truy xuất thông tin tương tự về hình thức nhưng không phù hợp về bối cảnh.
+
+Ngoài ra, kết quả giao dịch trong quá khứ không bảo đảm hiệu quả trong tương lai. Đánh giá trên một số tài sản và một giai đoạn cụ thể chưa đủ chứng minh khả năng khái quát cho mọi thị trường. Khi triển khai thực tế, cần xem xét phí giao dịch, trượt giá, giới hạn thanh khoản, dữ liệu thiếu và các yêu cầu quản trị rủi ro. Báo cáo này xem FinAgent là đối tượng nghiên cứu học thuật, không phải khuyến nghị đầu tư.
+
+\section{Kết luận chương}
+Chương này đã phân tích các thành phần chính của FinAgent và mối liên hệ giữa chúng. Đóng góp nổi bật của hệ thống là kết hợp phân tích đa phương thức, bộ nhớ truy xuất đa dạng, suy ngẫm hai cấp và công cụ bổ trợ trong quy trình ra quyết định giao dịch. Chương tiếp theo trình bày dữ liệu và phương pháp nghiên cứu được sử dụng để phân tích bài báo và định hướng tái hiện ở quy mô nhỏ.

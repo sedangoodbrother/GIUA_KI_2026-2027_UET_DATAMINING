@@ -1,0 +1,108 @@
+\chapter{CƠ SỞ LÝ THUYẾT VÀ CÁC NGHIÊN CỨU LIÊN QUAN}
+
+\section{Tổng quan về khai phá dữ liệu tài chính}
+
+\subsection{Khái niệm khai phá dữ liệu}
+Khai phá dữ liệu là quá trình phát hiện các mẫu, mối quan hệ hoặc tri thức có ích từ những tập dữ liệu có quy mô và độ phức tạp đáng kể. Quá trình này thường bao gồm thu thập dữ liệu, tiền xử lý, biến đổi dữ liệu, xây dựng mô hình, đánh giá và diễn giải kết quả. Khai phá dữ liệu không chỉ nhằm mô tả những gì đã xảy ra mà còn có thể hỗ trợ dự đoán và ra quyết định.
+
+Trong lĩnh vực tài chính, dữ liệu thường có tính thời gian, biến động mạnh và chịu ảnh hưởng đồng thời của nhiều yếu tố. Giá tài sản có thể thay đổi theo cung cầu, tin tức, báo cáo doanh nghiệp, chính sách kinh tế và tâm lý thị trường. Vì vậy, việc khai phá dữ liệu tài chính cần kết hợp hiểu biết thống kê, kiến thức miền và quy trình đánh giá phù hợp với dữ liệu chuỗi thời gian.
+
+\subsection{Đặc điểm của dữ liệu tài chính}
+Dữ liệu tài chính có một số đặc điểm quan trọng:
+\begin{itemize}
+    \item \textbf{Tính biến động:} phân phối và mức độ biến động của lợi suất có thể thay đổi theo thời gian.
+    \item \textbf{Nhiễu và tính bất định:} không phải mọi biến động giá đều có thể giải thích bằng các tín hiệu quan sát được.
+    \item \textbf{Tính phụ thuộc thời gian:} thứ tự thời gian có ý nghĩa; dữ liệu tương lai không được sử dụng để xây dựng quyết định tại thời điểm quá khứ.
+    \item \textbf{Tính đa nguồn:} thông tin có thể đến từ giá, khối lượng giao dịch, tin tức, báo cáo và biểu đồ.
+    \item \textbf{Rủi ro của việc khái quát hóa:} mô hình hoạt động tốt trên một tài sản hoặc giai đoạn chưa chắc hoạt động tốt trên tài sản hoặc giai đoạn khác.
+\end{itemize}
+Những đặc điểm này khiến bài toán giao dịch tài chính khác với bài toán phân loại thông thường. Một mô hình cần được đánh giá không chỉ bằng độ chính xác dự đoán mà còn bằng lợi nhuận, rủi ro và tính ổn định của chiến lược giao dịch.
+
+\section{Bài toán giao dịch tài chính}
+
+\subsection{Từ dữ liệu đến hành động giao dịch}
+Một hệ thống giao dịch nhận thông tin thị trường tại thời điểm hiện tại, phân tích trạng thái và đưa ra hành động. Trong phạm vi bài báo FinAgent, các hành động cơ bản được biểu diễn là \textit{Buy}, \textit{Hold} và \textit{Sell}. Mỗi quyết định có thể ảnh hưởng đến giá trị danh mục ở các thời điểm tiếp theo.
+
+Khác với dự đoán giá đơn thuần, giao dịch còn đòi hỏi hệ thống xác định cách chuyển dự báo hoặc nhận định thành hành động. Chẳng hạn, một tín hiệu cho thấy giá có khả năng tăng không tự động đồng nghĩa với việc mua là lựa chọn tốt nhất; quyết định còn phụ thuộc vào trạng thái danh mục, rủi ro, thông tin lịch sử và chiến lược đang sử dụng.
+
+\subsection{Mô hình quá trình quyết định Markov}
+Bài toán giao dịch có thể được mô hình hóa bằng quá trình quyết định Markov (Markov Decision Process -- MDP), thường được biểu diễn bởi bộ:
+\[
+\mathcal{M}=(\mathcal{S},\mathcal{A},\mathcal{P},\mathcal{R},\gamma),
+\]
+trong đó $\mathcal{S}$ là tập trạng thái, $\mathcal{A}$ là tập hành động, $\mathcal{P}$ là quy luật chuyển trạng thái, $\mathcal{R}$ là hàm phần thưởng và $\gamma$ là hệ số chiết khấu.
+
+Trong giao dịch, trạng thái có thể chứa thông tin giá, chỉ báo, tin tức và trạng thái danh mục; hành động là mua, giữ hoặc bán; phần thưởng có thể được thiết kế dựa trên thay đổi giá trị danh mục hoặc lợi suất. Đây là khung khái niệm hữu ích để giải thích tính tuần tự của quyết định giao dịch. Tuy nhiên, FinAgent không đơn giản chỉ là một mô hình học tăng cường truyền thống: bài báo xây dựng một tác tử dựa trên mô hình ngôn ngữ lớn, kết hợp phân tích đa phương thức, bộ nhớ, suy ngẫm và công cụ hỗ trợ.
+
+\section{Mô hình ngôn ngữ lớn và tác tử thông minh}
+
+\subsection{Mô hình ngôn ngữ lớn}
+Mô hình ngôn ngữ lớn (Large Language Model -- LLM) được huấn luyện trên lượng dữ liệu văn bản lớn và có khả năng xử lý ngôn ngữ tự nhiên, tóm tắt, giải thích và suy luận theo ngữ cảnh. Trong ứng dụng tài chính, LLM có thể hỗ trợ tổng hợp tin tức, diễn giải tín hiệu và tạo phần giải thích cho quyết định.
+
+Tuy nhiên, LLM có những hạn chế đáng chú ý. Mô hình có thể tạo ra nội dung nghe hợp lý nhưng không chính xác; kiến thức có thể không phản ánh dữ liệu mới nhất; kết quả phụ thuộc vào cách đặt câu hỏi và thông tin được cung cấp. Do đó, không nên coi câu trả lời của LLM là bằng chứng chắc chắn về diễn biến thị trường. Một hệ thống thực tế cần kiểm soát nguồn dữ liệu, kiểm tra đầu ra và đánh giá định lượng.
+
+\subsection{Từ LLM đến tác tử}
+Tác tử dựa trên LLM mở rộng mô hình ngôn ngữ bằng cách tổ chức các bước như quan sát môi trường, lập kế hoạch, sử dụng công cụ, lưu trữ thông tin và thực hiện hành động. Thay vì chỉ trả lời một câu hỏi độc lập, tác tử có thể thực hiện quy trình gồm nhiều bước, sử dụng kết quả của bước trước để quyết định bước tiếp theo.
+
+Trong giao dịch, cách tiếp cận tác tử phù hợp với bản chất tuần tự của nhiệm vụ. Hệ thống có thể thu thập dữ liệu, phân tích các khía cạnh của thị trường, tham khảo kinh nghiệm trước đó, xem xét kết quả giao dịch cũ và cuối cùng đưa ra hành động kèm lý do. FinAgent được xây dựng theo định hướng này \cite{zhang2024finagent}.
+
+\section{Dữ liệu đa phương thức trong tài chính}
+
+\subsection{Các dạng dữ liệu}
+Bài báo FinAgent kết hợp nhiều dạng thông tin:
+\begin{itemize}
+    \item \textbf{Dữ liệu số:} giá mở cửa, giá cao nhất, giá thấp nhất, giá đóng cửa và giá đóng cửa đã điều chỉnh.
+    \item \textbf{Dữ liệu văn bản:} tin tức liên quan đến tài sản và thông tin hướng dẫn từ chuyên gia.
+    \item \textbf{Dữ liệu hình ảnh:} biểu đồ nến K-line và biểu đồ thể hiện quá trình giao dịch.
+\end{itemize}
+Mỗi dạng dữ liệu cung cấp một góc nhìn khác nhau. Dữ liệu số giúp mô tả biến động giá; tin tức có thể cung cấp bối cảnh sự kiện; biểu đồ trực quan hóa xu hướng và các mẫu biến động. Kết hợp các nguồn này có thể giúp hệ thống tránh phụ thuộc hoàn toàn vào một loại tín hiệu.
+
+\subsection{Thách thức khi kết hợp dữ liệu}
+Các nguồn dữ liệu có thể khác nhau về định dạng, tần suất cập nhật và mức độ liên quan. Ví dụ, giá có thể được ghi nhận theo ngày trong khi tin tức được công bố nhiều lần trong một ngày. Một tin tức cũng có thể đã phản ánh trong giá trước khi hệ thống đưa ra quyết định. Ngoài ra, các nguồn văn bản có thể mâu thuẫn hoặc chứa thông tin không liên quan.
+
+Vì vậy, hệ thống đa phương thức cần xác định thời điểm dữ liệu, liên kết thông tin với đúng tài sản và chọn lọc nội dung hữu ích. Việc đưa nhiều dữ liệu vào mô hình không tự động đảm bảo kết quả tốt hơn; chất lượng kết hợp và cơ chế đánh giá vẫn là yếu tố quyết định.
+
+\section{Bộ nhớ và cơ chế suy ngẫm của tác tử}
+
+\subsection{Vai trò của bộ nhớ}
+Bộ nhớ giúp tác tử lưu lại thông tin thị trường và những nhận định đã tạo ra trước đó. Khi gặp một trạng thái mới, hệ thống có thể truy xuất những trường hợp tương tự để tham khảo. Trong bài báo, FinAgent sử dụng cơ chế lưu trữ dạng vector và tổ chức bộ nhớ cho thông tin thị trường, suy ngẫm cấp thấp và suy ngẫm cấp cao \cite{zhang2024finagent}.
+
+Cần phân biệt lưu trữ lịch sử với truy xuất có mục tiêu. Nếu mọi thông tin cũ đều được đưa vào ngữ cảnh, tác tử có thể bị quá tải hoặc bị ảnh hưởng bởi dữ liệu ít liên quan. FinAgent hướng tới truy xuất đa dạng theo loại thông tin để lựa chọn những nội dung phù hợp với câu hỏi đang xử lý.
+
+\subsection{Suy ngẫm cấp thấp và cấp cao}
+Suy ngẫm cấp thấp tập trung phân tích diễn biến giá và trạng thái thị trường nhằm rút ra nhận định ngắn hạn. Suy ngẫm cấp cao xem xét các quyết định giao dịch đã thực hiện và kết quả của chúng, từ đó hình thành bài học cho những quyết định sau.
+
+Hai mức suy ngẫm phục vụ các mục đích khác nhau. Một mức tập trung vào việc diễn giải thị trường hiện tại; mức còn lại xem xét chất lượng của quá trình ra quyết định theo thời gian. Việc lưu trữ kết quả suy ngẫm giúp tác tử có cơ sở tham khảo trong những lần xử lý tiếp theo, nhưng hiệu quả thực tế cần được kiểm chứng bằng thực nghiệm.
+
+\section{Công cụ hỗ trợ và tri thức chuyên gia}
+
+Công cụ hỗ trợ cho phép tác tử sử dụng các phương pháp phân tích có cấu trúc thay vì chỉ dựa vào văn bản do LLM tạo ra. Trong FinAgent, các công cụ bổ trợ bao gồm chiến lược giao dịch dựa trên quy tắc và chỉ báo kỹ thuật. Ví dụ, MACD sử dụng mối quan hệ giữa các đường trung bình động; KDJ kết hợp với RSI nhằm nhận diện trạng thái thị trường; các phương pháp này tạo ra tín hiệu theo quy tắc xác định.
+
+Tri thức chuyên gia và công cụ bổ trợ có thể làm tăng tính đa dạng của bằng chứng cho quyết định. Tuy vậy, công cụ được thiết kế cho một loại tài sản có thể không phù hợp với loại tài sản khác. Bài báo ghi nhận việc thêm công cụ hỗ trợ có thể đem lại tác động khác nhau giữa cổ phiếu và tiền mã hóa, cho thấy cần đánh giá từng thành phần thay vì giả định rằng mọi công cụ đều hữu ích trong mọi bối cảnh \cite{zhang2024finagent}.
+
+\section{Các hướng nghiên cứu liên quan}
+
+\subsection{Chiến lược giao dịch dựa trên quy tắc}
+Các chiến lược dựa trên quy tắc thường sử dụng chỉ báo kỹ thuật hoặc nguyên tắc đầu tư được xác định trước. Ưu điểm là tương đối dễ giải thích, triển khai và kiểm tra. Hạn chế là quy tắc có thể không thích nghi tốt khi thị trường thay đổi và kết quả phụ thuộc nhiều vào cách lựa chọn tham số.
+
+\subsection{Học máy và học sâu}
+Các mô hình như LightGBM, LSTM và Transformer có thể được dùng để dự đoán biến động hoặc lợi suất từ dữ liệu lịch sử. Học tăng cường như DQN, PPO và SAC tiếp cận bài toán theo hướng tối ưu chuỗi hành động. Những phương pháp này cung cấp các đường cơ sở quan trọng, nhưng chất lượng kết quả phụ thuộc vào dữ liệu, cách thiết kế phần thưởng, quy trình huấn luyện và kiểm thử.
+
+\subsection{Các tác tử tài chính dựa trên LLM}
+Các nghiên cứu về LLM tài chính khai thác khả năng xử lý văn bản và diễn giải thông tin của mô hình ngôn ngữ. Những hệ thống tác tử bổ sung bộ nhớ, công cụ và cơ chế suy luận để xử lý nhiệm vụ phức tạp hơn. Theo bài báo được nghiên cứu, điểm nhấn của FinAgent là kết hợp thông tin số, văn bản và hình ảnh với truy xuất bộ nhớ đa dạng, suy ngẫm hai cấp và công cụ giao dịch bổ trợ trong một hệ thống thống nhất \cite{zhang2024finagent}.
+
+\section{Các chỉ số đánh giá giao dịch}
+
+Bài báo sử dụng sáu chỉ số tài chính, gồm một chỉ số lợi nhuận, ba chỉ số lợi nhuận điều chỉnh theo rủi ro và hai chỉ số rủi ro:
+\begin{itemize}
+    \item \textbf{Annual Rate of Return (ARR):} tỷ suất lợi nhuận năm hóa, phản ánh mức tăng trưởng giá trị danh mục theo năm.
+    \item \textbf{Sharpe Ratio (SR):} đo lợi suất so với mức biến động tổng thể; giá trị cao thường thể hiện mức lợi suất điều chỉnh theo rủi ro tốt hơn.
+    \item \textbf{Calmar Ratio (CR):} so sánh lợi suất năm hóa với mức sụt giảm tối đa.
+    \item \textbf{Sortino Ratio (SoR):} tương tự Sharpe nhưng tập trung vào biến động bất lợi.
+    \item \textbf{Maximum Drawdown (MDD):} mức giảm lớn nhất của danh mục từ một đỉnh trước đó xuống đáy sau đó.
+    \item \textbf{Volatility (VOL):} độ biến động của lợi suất theo thời gian.
+\end{itemize}
+Khi so sánh kết quả, ARR cao không nên được xem xét riêng lẻ. Một chiến lược có lợi nhuận cao nhưng MDD lớn có thể không phù hợp với nhà đầu tư có mức chịu rủi ro thấp. Vì vậy, cần xem xét đồng thời lợi nhuận, rủi ro và mức lợi nhuận thu được trên mỗi đơn vị rủi ro.
+
+\section{Kết luận chương}
+Chương này đã trình bày những khái niệm cần thiết để phân tích FinAgent: khai phá dữ liệu tài chính, giao dịch như một bài toán ra quyết định tuần tự, LLM và tác tử thông minh, dữ liệu đa phương thức, bộ nhớ, suy ngẫm, công cụ hỗ trợ và các chỉ số đánh giá. Đây là nền tảng để chương tiếp theo phân tích kiến trúc và quy trình hoạt động cụ thể của FinAgent.

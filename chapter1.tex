@@ -1,0 +1,216 @@
+
+\chapter{GIỚI THIỆU}
+
+\section{Bối cảnh nghiên cứu}
+
+Trong những năm gần đây, sự phát triển của công nghệ thông tin, trí tuệ nhân tạo và các phương pháp khai phá dữ liệu đã tạo ra nhiều cơ hội ứng dụng trong lĩnh vực tài chính. Hoạt động giao dịch tài chính ngày càng gắn liền với việc thu thập, xử lý và phân tích khối lượng dữ liệu lớn nhằm hỗ trợ quá trình đánh giá thị trường và ra quyết định đầu tư. Các dữ liệu này không chỉ bao gồm giá và khối lượng giao dịch mà còn có thể bao gồm tin tức tài chính, biểu đồ giá, báo cáo phân tích và các thông tin chuyên môn khác.
+
+Thị trường tài chính là một môi trường có tính biến động cao. Giá tài sản có thể thay đổi do nhiều yếu tố khác nhau, chẳng hạn như tình hình kinh tế, thông tin doanh nghiệp, tâm lý nhà đầu tư và những sự kiện xảy ra trên thị trường. Do đó, việc xây dựng các hệ thống có khả năng phân tích dữ liệu và hỗ trợ quyết định giao dịch là một hướng nghiên cứu quan trọng trong lĩnh vực khai phá dữ liệu.
+
+Các phương pháp truyền thống thường sử dụng chỉ báo kỹ thuật, quy tắc giao dịch hoặc mô hình học máy để phân tích dữ liệu lịch sử và đưa ra tín hiệu mua, bán hoặc nắm giữ tài sản. Những phương pháp này có thể đạt được hiệu quả trong các điều kiện nhất định. Tuy nhiên, khi thông tin thị trường xuất hiện dưới nhiều dạng khác nhau, việc chỉ sử dụng một loại dữ liệu hoặc một phương pháp phân tích có thể hạn chế khả năng đánh giá toàn diện tình hình thị trường.
+
+Sự phát triển của học sâu, học tăng cường và các mô hình ngôn ngữ lớn đã mở ra những hướng tiếp cận mới cho bài toán giao dịch tài chính. Đặc biệt, các mô hình nền tảng có khả năng xử lý thông tin ngôn ngữ và kết hợp với các công cụ bên ngoài tạo điều kiện xây dựng những tác tử có khả năng phân tích dữ liệu, sử dụng thông tin lịch sử và hỗ trợ quá trình ra quyết định.
+
+Trong bối cảnh đó, Zhang và cộng sự \cite{zhang2024finagent} đề xuất FinAgent, một tác tử nền tảng đa phương thức dành cho giao dịch tài chính. Hệ thống được thiết kế nhằm khai thác nhiều dạng thông tin thị trường, sử dụng bộ nhớ để truy xuất kinh nghiệm liên quan, thực hiện phản tư ở hai cấp độ và tích hợp các công cụ hỗ trợ giao dịch. Hướng tiếp cận này là cơ sở để nghiên cứu cách kết hợp các kỹ thuật khai phá dữ liệu với mô hình ngôn ngữ lớn trong một hệ thống hỗ trợ quyết định tài chính.
+
+\section{Lý do lựa chọn đề tài}
+
+Đề tài được lựa chọn từ ba lý do chính.
+
+\subsection{Ý nghĩa của việc khai phá dữ liệu tài chính}
+
+Dữ liệu tài chính có đặc điểm đa dạng về nguồn, hình thức biểu diễn và mức độ biến động theo thời gian. Việc khai phá dữ liệu không chỉ dừng lại ở quá trình lưu trữ hay thống kê mà còn hướng đến phát hiện các mẫu, phân tích xu hướng và cung cấp thông tin phục vụ quyết định. Nghiên cứu các hệ thống giao dịch thông minh giúp làm rõ cách dữ liệu được chuyển đổi thành thông tin có ích cho một nhiệm vụ thực tế.
+
+\subsection{Khả năng kết hợp nhiều phương thức dữ liệu}
+
+Thông tin tài chính có thể được biểu diễn bằng dữ liệu số, văn bản và hình ảnh. Dữ liệu giá thể hiện diễn biến của tài sản theo thời gian; tin tức cung cấp thông tin về các sự kiện có thể ảnh hưởng đến thị trường; trong khi biểu đồ giá hỗ trợ quan sát trực quan các xu hướng và biến động.
+
+Việc kết hợp những nguồn thông tin này đặt ra yêu cầu về khả năng xử lý đa phương thức. FinAgent là một trường hợp nghiên cứu phù hợp để tìm hiểu cách tổ chức quá trình phân tích thông tin từ nhiều nguồn trong một hệ thống giao dịch thống nhất \cite{zhang2024finagent}.
+
+\subsection{Khả năng ứng dụng mô hình ngôn ngữ lớn trong hệ thống tác tử}
+
+Mô hình ngôn ngữ lớn có khả năng xử lý thông tin ngôn ngữ và tạo ra các lập luận bằng văn bản. Tuy nhiên, để ứng dụng vào một nhiệm vụ có nhiều bước như giao dịch tài chính, chỉ tạo ra câu trả lời bằng ngôn ngữ là chưa đủ. Hệ thống còn cần sử dụng dữ liệu phù hợp, tham khảo kinh nghiệm trước đó, xem xét các chiến lược và chuyển kết quả phân tích thành hành động.
+
+FinAgent cung cấp một ví dụ để nghiên cứu cách kết hợp mô hình ngôn ngữ lớn với bộ nhớ, cơ chế phản tư và công cụ hỗ trợ. Thông qua việc phân tích hệ thống, nhóm có thể hiểu rõ hơn vai trò của từng thành phần cũng như cách các thành phần phối hợp trong một quy trình ra quyết định.
+
+Từ những lý do trên, nhóm lựa chọn nghiên cứu bài báo FinAgent nhằm tìm hiểu một hướng tiếp cận ứng dụng khai phá dữ liệu và trí tuệ nhân tạo trong giao dịch tài chính.
+
+\section{Bài toán nghiên cứu}
+
+\subsection{Phát biểu bài toán}
+
+Bài toán được xem xét trong báo cáo là xây dựng một hệ thống hỗ trợ giao dịch tài chính có khả năng tiếp nhận thông tin thị trường từ nhiều nguồn, phân tích thông tin hiện tại, tham khảo kinh nghiệm trong quá khứ và đề xuất hành động giao dịch phù hợp.
+
+Ở mỗi thời điểm ra quyết định, hệ thống cần xem xét các thông tin có sẵn về tài sản và thị trường. Những thông tin này có thể bao gồm dữ liệu giá, biểu đồ, tin tức và các tín hiệu phân tích. Từ đó, hệ thống cần tổng hợp thông tin để xác định hành động như mua, bán hoặc nắm giữ tài sản theo cách biểu diễn của bài toán giao dịch.
+
+Quá trình này có thể khái quát thành chuỗi bước: thu thập dữ liệu, phân tích thông tin, truy xuất kinh nghiệm, đánh giá tình hình, lựa chọn hành động và theo dõi kết quả. Trong một hệ thống có cơ chế phản tư, kết quả của các quyết định trước đó còn có thể được sử dụng để hỗ trợ việc đánh giá và cải thiện các quyết định tiếp theo.
+
+\subsection{Những thách thức chính}
+
+Bài toán giao dịch tài chính đặt ra một số thách thức đáng chú ý.
+
+\textbf{Thứ nhất, tính đa dạng của dữ liệu.} Thông tin thị trường tồn tại dưới nhiều hình thức khác nhau. Hệ thống cần có cách xử lý và kết hợp các dạng dữ liệu này thay vì chỉ phụ thuộc vào một nguồn thông tin đơn lẻ.
+
+\textbf{Thứ hai, sự thay đổi của thị trường.} Các xu hướng và điều kiện giao dịch có thể thay đổi theo thời gian. Một quy tắc hoặc kinh nghiệm hữu ích trong giai đoạn trước không nhất thiết tiếp tục phù hợp trong mọi giai đoạn tiếp theo.
+
+\textbf{Thứ ba, khai thác kinh nghiệm lịch sử.} Dữ liệu lịch sử có thể chứa những tình huống tương tự với tình huống hiện tại. Tuy nhiên, việc sử dụng kinh nghiệm cần có sự chọn lọc để tránh áp dụng máy móc những quyết định từng có hiệu quả trong điều kiện khác biệt.
+
+\textbf{Thứ tư, chuyển đổi phân tích thành hành động.} Một hệ thống giao dịch không chỉ cần mô tả tình hình thị trường mà còn phải đưa ra hành động cụ thể. Vì vậy, quá trình lựa chọn hành động cần được kết nối với thông tin đầu vào, chiến lược giao dịch và các nguyên tắc hỗ trợ.
+
+\textbf{Thứ năm, đánh giá hiệu quả và rủi ro.} Một quyết định có thể tạo ra lợi nhuận trong một khoảng thời gian nhưng đồng thời đi kèm với mức sụt giảm tài sản hoặc rủi ro đáng kể. Do đó, đánh giá hệ thống cần sử dụng các chỉ số phù hợp thay vì chỉ xem xét một kết quả riêng lẻ.
+
+Bài báo FinAgent tiếp cận những thách thức này thông qua việc kết hợp phân tích đa phương thức, bộ nhớ đa dạng, phản tư hai cấp và các công cụ hỗ trợ giao dịch \cite{zhang2024finagent}.
+
+\section{Mục tiêu nghiên cứu}
+
+\subsection{Mục tiêu tổng quát}
+
+Mục tiêu tổng quát của báo cáo là nghiên cứu, phân tích và trình bày phương pháp FinAgent được đề xuất trong bài báo gốc, từ đó làm rõ cách hệ thống kết hợp dữ liệu đa phương thức, bộ nhớ, cơ chế phản tư và công cụ hỗ trợ để thực hiện nhiệm vụ giao dịch tài chính.
+
+Trên cơ sở đó, nhóm xây dựng nền tảng lý thuyết và phương pháp để triển khai một phiên bản thử nghiệm thu gọn trong giai đoạn tiếp theo.
+
+\subsection{Mục tiêu cụ thể}
+
+Các mục tiêu cụ thể bao gồm:
+
+\begin{itemize}
+    \item Tìm hiểu bài toán giao dịch tài chính và vai trò của khai phá dữ liệu trong việc phân tích thông tin thị trường.
+
+    \item Trình bày các khái niệm liên quan đến dữ liệu tài chính đa phương thức, mô hình ngôn ngữ lớn, tác tử thông minh, bộ nhớ và cơ chế phản tư.
+
+    \item Phân tích kiến trúc tổng thể của FinAgent và chức năng của các thành phần chính trong hệ thống.
+
+    \item Làm rõ cách hệ thống tiếp nhận thông tin thị trường, truy xuất kinh nghiệm, tổng hợp kết quả phân tích và lựa chọn hành động giao dịch.
+
+    \item Tìm hiểu dữ liệu, phương pháp đánh giá, các mô hình đối chứng và kết quả được báo cáo trong công trình gốc.
+
+    \item Xây dựng cơ sở cho việc triển khai một phiên bản FinAgent thu gọn bằng Python, đồng thời xác định phạm vi thực nghiệm phù hợp với điều kiện của nhóm.
+
+    \item Đề xuất cách đánh giá kết quả triển khai của nhóm dựa trên các chỉ số tài chính và so sánh với những phương pháp đối chứng phù hợp.
+\end{itemize}
+
+\section{Câu hỏi nghiên cứu}
+
+Để định hướng quá trình thực hiện, báo cáo tập trung vào các câu hỏi nghiên cứu sau:
+
+\begin{enumerate}
+    \item FinAgent được thiết kế để giải quyết những hạn chế nào của các phương pháp giao dịch tài chính hiện có?
+
+    \item Hệ thống kết hợp dữ liệu số, văn bản và hình ảnh như thế nào để xây dựng thông tin phục vụ quyết định giao dịch?
+
+    \item Bộ nhớ và cơ chế phản tư hai cấp đóng vai trò gì trong quá trình phân tích và lựa chọn hành động?
+
+    \item Việc tích hợp công cụ hỗ trợ và kiến thức từ các chiến lược giao dịch có ý nghĩa như thế nào đối với thiết kế hệ thống?
+
+    \item Bài báo gốc sử dụng dữ liệu, phương pháp đối chứng và chỉ số đánh giá nào để xem xét hiệu quả của FinAgent?
+
+    \item Có thể triển khai và đánh giá một phiên bản thu gọn của hệ thống trong điều kiện tài nguyên của nhóm hay không, và những hạn chế nào cần được xem xét?
+\end{enumerate}
+
+Các câu hỏi trên được sử dụng để tổ chức nội dung phân tích trong các chương tiếp theo. Những câu hỏi liên quan đến hiệu quả thực nghiệm của phiên bản do nhóm xây dựng sẽ chỉ được kết luận sau khi có dữ liệu và kết quả chạy thực tế.
+
+\section{Đối tượng và phạm vi nghiên cứu}
+
+\subsection{Đối tượng nghiên cứu}
+
+Đối tượng nghiên cứu chính là phương pháp FinAgent được trình bày trong bài báo của Zhang và cộng sự \cite{zhang2024finagent}. Báo cáo tập trung vào kiến trúc tác tử, các thành phần xử lý thông tin, cơ chế bộ nhớ, phản tư và ra quyết định trong nhiệm vụ giao dịch tài chính.
+
+Ngoài ra, báo cáo xem xét các phương pháp giao dịch và mô hình đối chứng được sử dụng trong bài báo gốc nhằm làm rõ bối cảnh đánh giá hiệu quả của hệ thống.
+
+\subsection{Phạm vi nội dung}
+
+Về nội dung, báo cáo tập trung vào các vấn đề sau:
+
+\begin{itemize}
+    \item Cơ sở lý thuyết về khai phá dữ liệu tài chính và các hệ thống giao dịch thông minh.
+
+    \item Phân tích kiến trúc và quy trình hoạt động của FinAgent.
+
+    \item Trình bày dữ liệu và phương pháp đánh giá được mô tả trong công trình gốc.
+
+    \item Phân tích kết quả do các tác giả công bố và những hạn chế cần lưu ý khi diễn giải kết quả.
+
+    \item Chuẩn bị phương án triển khai và đánh giá một phiên bản thu gọn của hệ thống.
+\end{itemize}
+
+\subsection{Phạm vi thực nghiệm dự kiến}
+
+Ở giai đoạn hiện tại, nhóm ưu tiên hoàn thiện phần nghiên cứu lý thuyết và phân tích bài báo. Thực nghiệm được xác định là phần công việc tiếp theo, sau khi nhóm kiểm tra khả năng tiếp cận dữ liệu, môi trường chạy và mô hình ngôn ngữ lớn phù hợp.
+
+Định hướng ban đầu là lựa chọn một phạm vi dữ liệu nhỏ, xây dựng các phương pháp đối chứng cơ bản và triển khai một phiên bản đơn giản hóa của quy trình FinAgent. Nếu dữ liệu gốc có thể tiếp cận và sử dụng phù hợp, nhóm sẽ ưu tiên xem xét dữ liệu đó. Trong trường hợp không thể sử dụng dữ liệu gốc, nhóm sẽ trình bày rõ nguồn dữ liệu thay thế và những khác biệt so với thiết lập ban đầu.
+
+Các lựa chọn cụ thể về tài sản, khoảng thời gian, công cụ, mô hình và tham số sẽ được xác định trong chương phương pháp nghiên cứu. Báo cáo không xem những lựa chọn dự kiến này là kết quả thực nghiệm đã hoàn thành.
+
+\section{Phương pháp nghiên cứu}
+
+Báo cáo sử dụng phương pháp nghiên cứu tài liệu kết hợp với phân tích hệ thống và định hướng thực nghiệm.
+
+\subsection{Nghiên cứu tài liệu}
+
+Nhóm sử dụng bài báo FinAgent làm tài liệu nghiên cứu chính. Nội dung được xem xét bao gồm vấn đề nghiên cứu, kiến trúc hệ thống, dữ liệu, thiết lập đánh giá, kết quả và các phân tích thành phần. Các tài liệu liên quan được sử dụng để bổ sung cơ sở lý thuyết về khai phá dữ liệu, mô hình ngôn ngữ lớn và giao dịch tài chính.
+
+Khi trình bày kết quả, báo cáo phân biệt giữa thông tin do các tác giả công bố và nhận xét của nhóm. Những nội dung không được xác nhận từ tài liệu gốc sẽ không được trình bày như sự thật đã được kiểm chứng.
+
+\subsection{Phân tích và tổng hợp hệ thống}
+
+Nhóm phân rã FinAgent thành các thành phần chức năng để nghiên cứu vai trò của từng thành phần và mối liên hệ giữa chúng. Trên cơ sở đó, nhóm tổng hợp quy trình xử lý từ thông tin đầu vào đến hành động giao dịch, đồng thời xem xét vai trò của bộ nhớ và phản tư trong việc hỗ trợ ra quyết định.
+
+Phương pháp này giúp chuyển nội dung mô tả trong bài báo thành cách trình bày có hệ thống, thuận tiện cho việc hiểu kiến trúc và xây dựng phiên bản triển khai thử nghiệm.
+
+\subsection{Định hướng thực nghiệm}
+
+Sau khi hoàn thành phần phân tích lý thuyết, nhóm dự kiến triển khai một phiên bản thu gọn bằng Python. Phương án thực nghiệm sẽ được xây dựng dựa trên dữ liệu có thể tiếp cận, khả năng sử dụng mô hình và giới hạn tài nguyên.
+
+Kết quả triển khai dự kiến được đánh giá bằng các chỉ số phù hợp với bài toán giao dịch, sau đó so sánh với các phương pháp đối chứng. Việc lựa chọn dữ liệu, quy tắc giao dịch, chỉ số đánh giá và cách tổ chức thử nghiệm sẽ được trình bày cụ thể ở chương phương pháp nghiên cứu.
+
+Do thực nghiệm chưa được thực hiện tại thời điểm viết chương này, báo cáo chưa đưa ra kết luận về hiệu quả của phiên bản do nhóm xây dựng.
+
+\section{Ý nghĩa và đóng góp dự kiến của báo cáo}
+
+\subsection{Ý nghĩa về mặt học thuật}
+
+Báo cáo hệ thống hóa một hướng tiếp cận kết hợp khai phá dữ liệu tài chính với mô hình ngôn ngữ lớn và kiến trúc tác tử đa phương thức. Việc phân tích FinAgent giúp làm rõ mối liên hệ giữa xử lý thông tin thị trường, truy xuất kinh nghiệm, phản tư và ra quyết định.
+
+Bên cạnh đó, báo cáo tạo cơ sở để so sánh cách tiếp cận của hệ thống với các phương pháp giao dịch truyền thống và các mô hình học máy được sử dụng trong nghiên cứu tài chính.
+
+\subsection{Ý nghĩa về mặt thực hành}
+
+Về mặt thực hành, báo cáo hướng đến việc chuyển hóa nội dung của bài báo thành một quy trình phân tích và triển khai có thể kiểm tra từng bước. Việc xây dựng phiên bản thu gọn dự kiến giúp nhóm thực hành các công việc như xử lý dữ liệu tài chính, xây dựng chiến lược đối chứng, tính toán chỉ số đánh giá và phân tích kết quả.
+
+Phần triển khai cũng giúp nhận diện những khác biệt giữa một kiến trúc nghiên cứu được mô tả trong bài báo và một hệ thống có thể chạy trong điều kiện tài nguyên thực tế.
+
+\subsection{Đóng góp dự kiến}
+
+Các đóng góp của nhóm được xác định theo hai hướng:
+
+\begin{itemize}
+    \item \textbf{Đóng góp phân tích:} trình bày có hệ thống bài toán, kiến trúc, quy trình hoạt động và phương pháp đánh giá của FinAgent dựa trên công trình gốc.
+
+    \item \textbf{Đóng góp triển khai dự kiến:} xây dựng một phiên bản thử nghiệm thu gọn và đánh giá bằng dữ liệu, phương pháp đối chứng cùng các chỉ số được mô tả rõ ràng.
+\end{itemize}
+
+Đóng góp thực nghiệm chỉ được xác nhận sau khi nhóm hoàn thành triển khai và có kết quả kiểm tra được. Báo cáo sẽ phân biệt rõ những nội dung được kế thừa từ bài báo gốc với những nội dung do nhóm tự triển khai.
+
+\section{Cấu trúc báo cáo}
+
+Ngoài phần mở đầu, tóm tắt và tài liệu tham khảo, báo cáo được tổ chức thành sáu chương với nội dung dự kiến như sau:
+
+\begin{itemize}
+    \item \textbf{Chương 1 -- Giới thiệu:} trình bày bối cảnh, lý do lựa chọn đề tài, bài toán, mục tiêu, câu hỏi nghiên cứu, phạm vi và phương pháp thực hiện.
+
+    \item \textbf{Chương 2 -- Cơ sở lý thuyết và các nghiên cứu liên quan:} trình bày những kiến thức nền tảng về khai phá dữ liệu tài chính, mô hình ngôn ngữ lớn, dữ liệu đa phương thức, tác tử thông minh, bộ nhớ, phản tư và các phương pháp giao dịch liên quan.
+
+    \item \textbf{Chương 3 -- Phân tích kiến trúc FinAgent:} tập trung phân tích các thành phần của hệ thống, luồng thông tin và quy trình ra quyết định theo mô tả trong bài báo gốc.
+
+    \item \textbf{Chương 4 -- Dữ liệu và phương pháp nghiên cứu:} trình bày dữ liệu, cách chuẩn bị dữ liệu, các chỉ số đánh giá, phương pháp đối chứng và kế hoạch triển khai của nhóm.
+
+    \item \textbf{Chương 5 -- Thực nghiệm và kết quả:} trình bày thiết lập thực nghiệm, kết quả chạy thực tế, bảng so sánh và phân tích kết quả sau khi nhóm hoàn thành triển khai.
+
+    \item \textbf{Chương 6 -- Thảo luận và kết luận:} tổng hợp những nhận xét chính, phân tích hạn chế của phương pháp và phiên bản triển khai, đồng thời đề xuất hướng phát triển tiếp theo.
+\end{itemize}
+
+\section{Kết luận chương}
+
+Chương 1 đã giới thiệu bối cảnh nghiên cứu giao dịch tài chính dựa trên dữ liệu, lý do lựa chọn FinAgent và những thách thức chính của bài toán. Từ đó, chương xác định mục tiêu, câu hỏi nghiên cứu, đối tượng, phạm vi và phương pháp thực hiện báo cáo.
+
+FinAgent được lựa chọn làm đối tượng nghiên cứu vì hệ thống kết hợp nhiều dạng thông tin thị trường với bộ nhớ, cơ chế phản tư hai cấp và công cụ hỗ trợ giao dịch. Những nội dung này sẽ được phân tích chi tiết hơn trong các chương tiếp theo. Trên cơ sở nghiên cứu bài báo gốc, nhóm sẽ từng bước xây dựng phương án triển khai thử nghiệm và chỉ đưa ra kết luận thực nghiệm sau khi có kết quả thực tế.

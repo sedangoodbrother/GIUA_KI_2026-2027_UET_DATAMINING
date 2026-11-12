@@ -1,0 +1,105 @@
+\chapter{THỰC NGHIỆM VÀ KẾT QUẢ}
+
+\section{Phạm vi của chương}
+
+Chương này phân biệt kết quả thực nghiệm được công bố trong bài báo FinAgent với thực nghiệm tái hiện của nhóm. Các số liệu được nêu trong những mục đầu là kết quả do Zhang và cộng sự báo cáo, không phải kết quả chạy của nhóm. Phần thực nghiệm của nhóm chỉ được hoàn thiện sau khi nhóm lựa chọn dữ liệu, triển khai mã nguồn và thực hiện kiểm thử thực tế.
+
+\section{Thiết lập thực nghiệm của bài báo gốc}
+
+Bài báo đánh giá FinAgent trên sáu tài sản gồm AAPL, AMZN, GOOGL, MSFT, TSLA và ETHUSD. Dữ liệu trải dài từ ngày 01/06/2022 đến ngày 01/01/2024. Theo thiết kế được công bố, dữ liệu từ 01/06/2022 đến 01/06/2023 được dùng cho giai đoạn huấn luyện/phát triển, còn khoảng từ 01/06/2023 đến 01/01/2024 được dùng làm giai đoạn kiểm thử \cite{zhang2024finagent}.
+
+Hệ thống được so sánh với các chiến lược dựa trên quy tắc, mô hình học máy và học sâu, mô hình học tăng cường và các hệ thống dựa trên LLM. Các nhóm đường cơ sở gồm B\&H, MACD, KDJ\&RSI, ZMR, LGBM, LSTM, Transformer, SAC, PPO, DQN, FinGPT và FinMem. Bài báo sử dụng sáu chỉ số tài chính là ARR, SR, CR, SoR, MDD và VOL.
+
+\section{Kết quả tổng quan do tác giả công bố}
+
+Theo phần tóm tắt của bài báo, FinAgent được đánh giá trên sáu bộ dữ liệu tài chính và so sánh với 12 phương pháp đường cơ sở. Tác giả báo cáo rằng FinAgent cải thiện trung bình hơn 36\% về lợi nhuận so với các đường cơ sở được lựa chọn. Trên một bộ dữ liệu, bài báo báo cáo mức lợi nhuận 92,27\% và mức cải thiện tương đối 84,39\% so với đường cơ sở tốt nhất theo cách tính của tác giả \cite{zhang2024finagent}.
+
+Các con số trên cần được hiểu trong phạm vi dữ liệu, giai đoạn, giả định và cách đánh giá của bài báo. Chúng không có nghĩa FinAgent sẽ tạo ra mức lợi nhuận tương tự khi áp dụng vào thị trường khác hoặc trong tương lai. Kết quả kiểm thử lịch sử cũng không bảo đảm lợi nhuận khi giao dịch thực tế.
+
+\section{Phân tích hiệu quả của các thành phần}
+
+Bài báo thực hiện nghiên cứu loại bỏ thành phần (ablation study) để xem xét đóng góp của Market Intelligence (M), Low-level Reflection (L), High-level Reflection (H) và Augmented Tools (T) \cite{zhang2024finagent}.
+
+\subsection{Vai trò của suy ngẫm cấp thấp}
+Theo phân tích của tác giả, khi bổ sung suy ngẫm cấp thấp vào cấu hình chỉ có phân tích thị trường, ARR tăng khoảng 45\% đến 101\% trên hai trường hợp TSLA và ETHUSD được thảo luận, đồng thời mức rủi ro đo bằng MDD giảm khoảng 14\% đến 44\%. Kết quả này cho thấy việc bổ sung phân tích diễn biến thị trường có thể đem lại lợi ích trong các thiết lập được kiểm tra.
+
+Tuy nhiên, cần thận trọng khi khái quát con số này. Mức cải thiện phụ thuộc vào tài sản, cấu hình và chỉ số so sánh; nó không chứng minh rằng suy ngẫm cấp thấp luôn cải thiện kết quả trong mọi điều kiện.
+
+\subsection{Vai trò của suy ngẫm cấp cao}
+Bài báo báo cáo rằng việc bổ sung suy ngẫm cấp cao vào cấu hình đã có suy ngẫm cấp thấp giúp cải thiện ARR và SR, đồng thời giảm rủi ro trong nhiều trường hợp. Tác giả cũng ghi nhận có trường hợp MDD của TSLA tăng nhẹ, cho thấy lợi ích của một thành phần không nhất thiết đồng đều trên mọi chỉ số.
+
+Kết quả này phù hợp với mục tiêu thiết kế của suy ngẫm cấp cao: xem xét các quyết định trước đó và lưu lại bài học để hỗ trợ các quyết định sau. Dù vậy, cần phân biệt sự phù hợp về mặt thiết kế với bằng chứng định lượng; mức độ hiệu quả phải được đánh giá theo từng cấu hình thực nghiệm.
+
+\subsection{Tác động của công cụ bổ trợ}
+Công cụ bổ trợ cung cấp tín hiệu từ các chiến lược giao dịch có cấu trúc. Bài báo ghi nhận công cụ có thể cải thiện một số kết quả trên cổ phiếu, nhưng khi bổ sung các phương pháp được thiết kế chủ yếu cho cổ phiếu, hiệu quả trên ETHUSD có thể giảm đáng kể. Tác giả còn khảo sát cấu hình trong đó quyết định dựa riêng vào các công cụ bổ trợ, nhằm phân tích tác động của chúng khi không có các thành phần khác tham gia vào quyết định cuối cùng.
+
+Điểm rút ra là công cụ không nên được thêm vào hệ thống chỉ vì nó tạo ra nhiều tín hiệu. Cần đánh giá mức phù hợp của công cụ với loại tài sản, điều kiện thị trường và mục tiêu tối ưu.
+
+\section{Phân tích cơ chế truy xuất đa dạng}
+
+FinAgent sử dụng truy xuất bộ nhớ theo nhiều loại thông tin để lấy các nội dung lịch sử phù hợp với nhiệm vụ. Theo bài báo, tác giả thực hiện so sánh giữa hệ thống đầy đủ và cấu hình không sử dụng cơ chế truy xuất đa dạng, đồng thời trực quan hóa các biểu diễn thông tin thị trường được truy xuất.
+
+Ý tưởng cốt lõi là nội dung lịch sử cần được lựa chọn theo mục đích. Một quyết định giao dịch có thể cần nhận định thị trường trước đây, bài học từ quyết định cũ hoặc các thông tin khác nhau tùy trạng thái hiện tại. Truy xuất theo nhiều góc nhìn có thể giúp cung cấp ngữ cảnh phong phú hơn, nhưng cũng làm tăng độ phức tạp của hệ thống. Khi tái hiện, nhóm cần ghi nhận loại truy xuất, nội dung được trả về và ảnh hưởng của nó tới quyết định.
+
+\section{Tổng hợp kết quả nghiên cứu}
+
+Các kết quả do bài báo công bố hỗ trợ một số nhận xét:
+\begin{enumerate}
+    \item Kết hợp dữ liệu đa phương thức là hướng tiếp cận có tiềm năng trong giao dịch tài chính vì thị trường chịu ảnh hưởng của cả dữ liệu giá và thông tin văn bản, hình ảnh.
+    \item Bộ nhớ và suy ngẫm giúp hệ thống khai thác lịch sử thay vì xử lý mỗi thời điểm như một bài toán hoàn toàn độc lập.
+    \item Các thành phần có thể đóng góp khác nhau tùy tài sản; kết quả ablation cần được xem xét thay vì chỉ đánh giá toàn bộ hệ thống.
+    \item Công cụ hỗ trợ có thể tạo thêm bằng chứng, nhưng cần kiểm tra độ phù hợp với từng loại tài sản.
+    \item Đánh giá giao dịch cần sử dụng đồng thời chỉ số lợi nhuận và chỉ số rủi ro.
+\end{enumerate}
+
+\section{Khung trình bày thực nghiệm tái hiện của nhóm}
+
+Phần này được thiết kế để nhóm bổ sung sau khi thực hiện chạy thử. Không điền số liệu dự kiến hoặc số liệu của bài báo gốc vào bảng kết quả của nhóm.
+
+\subsection{Môi trường thực nghiệm}
+Nhóm cần ghi rõ hệ điều hành, phiên bản Python, các thư viện sử dụng, nguồn dữ liệu, khoảng thời gian, tài sản được chọn và cấu hình mô hình. Nếu có sử dụng API LLM, cần nêu tên mô hình và các giới hạn truy cập liên quan; không công khai khóa API hoặc thông tin xác thực.
+
+\subsection{Bảng kết quả cần bổ sung}
+Sau khi chạy thực nghiệm, nhóm có thể điền bảng dưới đây. Nếu một chỉ số chưa tính được, cần ghi rõ lý do thay vì tự điền giá trị.
+
+\begin{table}[htbp]
+\centering
+\caption{Kết quả thực nghiệm tái hiện của nhóm}
+\label{tab:group-results}
+\begin{tabular}{lcccccc}
+\toprule
+Phương pháp & ARR & SR & CR & SoR & MDD & VOL \\
+\midrule
+Đường cơ sở & -- & -- & -- & -- & -- & -- \\
+Phiên bản thử nghiệm & -- & -- & -- & -- & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textit{Lưu ý:} Các dấu ``--'' là chỗ chờ bổ sung dữ liệu, không phải kết quả bằng không. Chỉ thay thế chúng sau khi có đầu ra thực nghiệm được kiểm tra.
+
+\subsection{Các bước phân tích sau khi có kết quả}
+Khi đã có kết quả, nhóm nên trả lời lần lượt:
+\begin{itemize}
+    \item Phương pháp nào có ARR cao hơn trên cùng giai đoạn kiểm thử?
+    \item Lợi nhuận đó đi kèm mức MDD và VOL như thế nào?
+    \item Kết quả có thay đổi khi thay tài sản hoặc khoảng thời gian không?
+    \item Những giao dịch nào đóng góp lớn nhất vào lợi nhuận hoặc thua lỗ?
+    \item Có trường hợp nào dữ liệu thiếu, tin tức sai thời điểm hoặc đầu ra mô hình không đúng định dạng không?
+\end{itemize}
+Các câu trả lời cần dựa trên bảng số liệu, nhật ký chạy và ví dụ kiểm tra cụ thể.
+
+\section{Những nguy cơ làm sai lệch kết quả}
+
+Một số nguy cơ cần được kiểm soát trong thực nghiệm tái hiện gồm:
+\begin{itemize}
+    \item \textbf{Rò rỉ dữ liệu tương lai:} sử dụng thông tin chưa xuất hiện tại thời điểm quyết định.
+    \item \textbf{Thiên lệch lựa chọn tài sản:} chỉ báo cáo tài sản mà phương pháp hoạt động tốt.
+    \item \textbf{Không tính chi phí giao dịch:} lợi nhuận mô phỏng có thể cao hơn kết quả thực tế.
+    \item \textbf{Thay đổi cấu hình giữa các phương pháp:} khiến việc so sánh không công bằng.
+    \item \textbf{Đầu ra LLM không ổn định:} cùng một yêu cầu có thể tạo ra những câu trả lời khác nhau.
+    \item \textbf{Đánh giá trên mẫu nhỏ:} kết quả ở một tài sản hoặc một giai đoạn không đủ để kết luận về tính tổng quát.
+\end{itemize}
+
+\section{Kết luận chương}
+Chương này đã tổng hợp thiết kế thực nghiệm và những kết quả chính được công bố trong bài báo FinAgent, đồng thời phân tích vai trò của suy ngẫm, công cụ bổ trợ và truy xuất bộ nhớ. Kết quả của tác giả cho thấy tiềm năng của cách tiếp cận tích hợp, nhưng cũng cho thấy hiệu quả có thể khác nhau theo tài sản. Phần tái hiện của nhóm cần được hoàn thiện bằng dữ liệu và kết quả chạy thực tế; báo cáo không coi số liệu của bài báo gốc là kết quả của nhóm.

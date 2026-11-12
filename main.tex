@@ -1,0 +1,240 @@
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ==========================================
+% 1. GOI LENH
+% ==========================================
+
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Termes}
+
+\usepackage[vietnamese]{babel}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{geometry}
+
+% ==========================================
+% 2. DINH DANG CHUNG
+% ==========================================
+
+\onehalfspacing
+\setlength{\parindent}{1.27cm}
+\setlist{nosep}
+
+% Dinh dang tieu de chuong
+\titleformat{\chapter}[display]
+{\bfseries\Large\centering}
+{\MakeUppercase{CHƯƠNG \thechapter}}
+{0.5em}
+{\MakeUppercase}
+
+% Dinh dang tieu de muc
+\titleformat{\section}
+{\bfseries\Large\centering}
+{\thesection}
+{0.5em}
+{\MakeUppercase}
+
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+\titleformat{\subsection}
+{\bfseries\normalsize}
+{\thesubsection}
+{0.5em}
+{}
+
+% Header va footer cho cac trang noi dung
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Báo cáo Khai phá dữ liệu}
+\fancyhead[R]{FinAgent}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{15pt}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={Báo cáo Khai phá dữ liệu - FinAgent}
+}
+
+% ==========================================
+% 3. BAT DAU TAI LIEU
+% ==========================================
+
+\begin{document}
+
+% ==========================================
+% 4. TRANG BIA - GIU CACH VE CUA MAU GOC
+% ==========================================
+
+\begin{titlepage}
+\thispagestyle{empty}
+\centering
+
+\begin{tikzpicture}[overlay,remember picture]
+    \centering
+
+    % Khung vien: GIU NGUYEN toa do tu code bia goc
+    \draw[line width = 3pt]
+    ($(current page.north west) + (0.9in,-0.7in)$)
+    rectangle
+    ($(current page.south east) + (-0.9in,0.7in)$);
+
+    % Dong dia diem va nam: GIU NGUYEN toa do goc
+    \draw (0,-23.6) node[above]
+    {\fontsize{13}{13}\selectfont{\textbf{HÀ NỘI - 2026}}};
+
+\end{tikzpicture}
+
+\vspace{-2.0cm}
+
+\begin{center}
+
+    % Ten truong - giu bo cuc mau goc
+    \MakeUppercase{
+        \textbf{\fontsize{13}{13}\selectfont
+        ĐẠI HỌC QUỐC GIA HÀ NỘI}
+    }\\[0.2cm]
+
+    \MakeUppercase{
+        \textbf{\fontsize{13}{13}\selectfont
+        TRƯỜNG ĐẠI HỌC CÔNG NGHỆ}
+    }\\
+
+    % Khoang cach den logo - giu mau goc
+    \vspace{1.8cm}
+
+    % Logo UET
+    \includegraphics[width=0.35\linewidth]{logo_uet.jpg}
+
+    % Khoang cach den ten bao cao
+    \vspace{1.5cm}
+
+    % Ten bai tap lon
+    {\fontsize{17}{20}\selectfont\bfseries
+    BÀI TẬP LỚN: KHAI PHÁ DỮ LIỆU}\\[0.5cm]
+
+    % Ten de tai moi
+    {\fontsize{15}{19}\selectfont\bfseries
+    PHÂN TÍCH BÀI BÁO FINAGENT:\\
+    A MULTIMODAL FOUNDATION AGENT FOR FINANCIAL TRADING}\\[0.2cm]
+
+
+    % Khoang cach den thong tin sinh vien
+    \vspace{2.5cm}
+
+    % Thong tin mon hoc, giang vien va sinh vien
+    {\fontsize{14}{17}\selectfont
+    \hspace*{1.3cm}
+    \begin{tabular}{p{3.2cm} p{7.5cm}}
+
+        \textbf{Môn học:}
+        & KHAI PHÁ DỮ LIỆU\\[0.3cm]
+
+        \textbf{Giảng viên:}
+        & PGS.TS Phan Xuân Hiếu\\[0.3cm]
+
+        \textbf{Sinh viên:}
+       & 
+       24022749 Hoàng Minh Triết\\[0.15cm]
+        &
+        24022721 Nguyễn Tài Ân Quốc\\[0.15cm]
+        &
+        24022743 Lê Phương Thúy\\[0.15cm]
+
+        &
+        24022703 Phan Nguyễn Khánh Nguyên
+
+    \end{tabular}
+    }
+
+\end{center}
+\end{titlepage}
+
+% ==========================================
+% 5. CAC TRANG DAU BAO CAO
+% ==========================================
+
+% Chinh le rieng cho noi dung, khong anh huong trang bia
+\newgeometry{
+    left=3cm,
+    right=3cm,
+    top=3.5cm,
+    bottom=3.5cm
+}
+
+\pagenumbering{roman}
+
+\chapter*{LỜI MỞ ĐẦU}
+\addcontentsline{toc}{chapter}{Lời mở đầu}
+
+% Bo sung noi dung loi mo dau sau.
+
+\chapter*{TÓM TẮT}
+\addcontentsline{toc}{chapter}{Tóm tắt}
+
+% Bo sung noi dung tom tat sau.
+
+\tableofcontents
+\clearpage
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Danh mục hình vẽ}
+\clearpage
+
+\listoftables
+\addcontentsline{toc}{chapter}{Danh mục bảng}
+\clearpage
+
+% Bat dau danh so trang noi dung tu 1
+\pagenumbering{arabic}
+
+% ==========================================
+% 6. NOI DUNG CAC CHUONG
+% ==========================================
+
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+\include{chapter4}
+\include{chapter5}
+\include{chapter6}
+
+% ==========================================
+% 7. TAI LIEU THAM KHAO
+% ==========================================
+
+\begin{thebibliography}{99}
+
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
+
+\bibitem{zhang2024finagent}
+W. Zhang et al.,
+``A Multimodal Foundation Agent for Financial Trading:
+Tool-Augmented, Diversified, and Generalist,''
+in \textit{Proceedings of the 30th ACM SIGKDD Conference
+on Knowledge Discovery and Data Mining}, 2024.
+\url{https://doi.org/10.1145/3637528.3671801}.
+
+\end{thebibliography}
+
+\end{document}
